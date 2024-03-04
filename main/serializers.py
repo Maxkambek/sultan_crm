@@ -11,7 +11,9 @@ class BranchSerializer(serializers.ModelSerializer):
 class TourPaketSerializer(serializers.ModelSerializer):
     class Meta:
         model = TourPaket
-        fields = "__all__"
+        fields = ['id', 'name', 'price', 'quantity', 'date_go', 'date_back', 'duration', 'type_paket', 'description',
+                  'reys', 'avia_company', 'madina_duration', 'madina_hotel', 'madina_dish', 'makka_duration',
+                  'makka_dish', 'makka_duration', 'current_quantity', 'get_count']
 
 
 class ClientSerializer(serializers.ModelSerializer):
@@ -20,7 +22,7 @@ class ClientSerializer(serializers.ModelSerializer):
         fields = ['id', 'owner', 'full_name', 'phone', 'date_added', 'passport_seria', 'passport_file', 'visa_file',
                   'updated_at', 'last_updater', 'paket', 'payment_taken', 'date_payment', 'status',
                   'percentage_of_payment', 'stay', 'country', 'branch_name', 'price', 'get_paket_name', 'passport_date',
-                  'passport_expire']
+                  'passport_expire', 'description']
 
 
 class MeetingSerializer(serializers.ModelSerializer):

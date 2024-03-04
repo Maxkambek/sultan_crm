@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Account, Branch
+from .models import Account, Branch, FAQ
+
+
+@admin.register(FAQ)
+class FAQAdmin(admin.ModelAdmin):
+    pass
 
 
 @admin.register(Account)

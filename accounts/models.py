@@ -62,6 +62,7 @@ class Account(AbstractBaseUser, PermissionsMixin):
     role = models.CharField(choices=ROLE, max_length=20, default='Operator')
     branch = models.ForeignKey(Branch, on_delete=models.SET_NULL, null=True, blank=True, related_name='user_branch')
     created_at = models.DateField(auto_now_add=True, null=True)
+    avatar = models.ImageField(upload_to='images/', null=True, blank=True)
 
     objects = AccountManager()
     USERNAME_FIELD = 'phone'
@@ -83,3 +84,12 @@ class Account(AbstractBaseUser, PermissionsMixin):
                 count += 1
                 cost += i.price
         return {'count': count, 'cost': cost}
+
+
+class FAQ(models.Model):
+    question = models.TextField()
+    answer = models.TextField()
+    created_at = models.DateField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return self.question

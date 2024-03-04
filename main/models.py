@@ -1,3 +1,5 @@
+import os
+
 from django.db import models
 from accounts.models import Account, Branch
 
@@ -30,6 +32,10 @@ class TourPaket(models.Model):
         return self.name
 
     @property
+    def get_count(self):
+        return self.paket_clients.all().count()
+
+    @property
     def status(self):
         return self.quantity == self.current_quantity
 
@@ -38,13 +44,15 @@ class Client(models.Model):
     STATUS = (
         ('New', 'New'),
         ('Active', 'Active'),
+        ("SendVisa", "SendVisa"),
+        ("Ready", "Ready"),
         ('Completed', 'Completed')
     )
     owner = models.ForeignKey(Account, on_delete=models.SET_NULL, null=True, blank=True, related_name='client_owner')
     full_name = models.CharField(max_length=323)
     phone = models.CharField(max_length=22)
     date_added = models.DateTimeField(auto_now_add=True)
-    passport_file = models.FileField(upload_to='passports/', null=True, blank=True)
+    passport_file = models.FileField(upload_to="passports/", null=True, blank=True)
     passport_seria = models.CharField(max_length=32, null=True, blank=True)
     passport_date = models.CharField(max_length=32, null=True, blank=True)
     passport_expire = models.CharField(max_length=32, null=True, blank=True)
@@ -58,6 +66,7 @@ class Client(models.Model):
     status = models.CharField(max_length=123, choices=STATUS, default='New')
     stay = models.CharField(max_length=123, null=True)
     country = models.CharField(max_length=123, null=True)
+    description = models.TextField(null=True, blank=True)
 
     @property
     def percentage_of_payment(self):
