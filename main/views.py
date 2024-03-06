@@ -97,8 +97,8 @@ class ClientCreateAPIView(generics.CreateAPIView):
 class ClientListAPIView(generics.ListAPIView):
     queryset = Client.objects.all()
     serializer_class = ClientSerializer
-    permission_classes = [IsAuthenticated]
-    authentication_classes = [TokenAuthentication]
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = [TokenAuthentication]
 
     def get_queryset(self):
         paket_id = self.request.query_params.get('paket_id')

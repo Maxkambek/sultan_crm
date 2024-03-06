@@ -13,7 +13,7 @@ class TourPaketSerializer(serializers.ModelSerializer):
         model = TourPaket
         fields = ['id', 'name', 'price', 'quantity', 'date_go', 'date_back', 'duration', 'type_paket', 'description',
                   'reys', 'avia_company', 'madina_duration', 'madina_hotel', 'madina_dish', 'makka_duration',
-                  'makka_dish', 'makka_duration', 'current_quantity', 'get_count']
+                  'makka_dish', 'makka_duration','makka_hotel' ,'current_quantity', 'get_count']
 
 
 class ClientSerializer(serializers.ModelSerializer):
