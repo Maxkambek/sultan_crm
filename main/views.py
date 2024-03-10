@@ -75,10 +75,17 @@ class ClientCreateAPIView(generics.CreateAPIView):
     authentication_classes = [TokenAuthentication]
 
     def create(self, request, *args, **kwargs):
+        tour_paket = TourPaket.objects.filter(id=request.data.get('paket')).first()
+        pass_ser = self.request.data.get('passport_seria')
+        full_name = self.request.data.get('full_name')
+        tqs = Client.objects.filter(paket=tour_paket)
+        qs1 = tqs.filter(passport_seria=pass_ser)
+        qs2 = tqs.filter(full_name=full_name)
+        if qs1 or qs2 :
+            return Response({'msg':'Bu mijoz oldin kiritilgan!'},status=402)
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         self.perform_create(serializer)
-        tour_paket = TourPaket.objects.filter(id=request.data.get('paket')).first()
         tour_paket.current_quantity += 1
         tour_paket.save()
         headers = self.get_success_headers(serializer.data)

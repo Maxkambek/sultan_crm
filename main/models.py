@@ -67,6 +67,7 @@ class Client(models.Model):
     stay = models.CharField(max_length=123, null=True)
     country = models.CharField(max_length=123, null=True)
     description = models.TextField(null=True, blank=True)
+    residence = models.CharField(max_length=123,default="Uzbekistan")
 
     @property
     def percentage_of_payment(self):

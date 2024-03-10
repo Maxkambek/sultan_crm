@@ -22,7 +22,7 @@ class ClientSerializer(serializers.ModelSerializer):
         fields = ['id', 'owner', 'full_name', 'phone', 'date_added', 'passport_seria', 'passport_file', 'visa_file',
                   'updated_at', 'last_updater', 'paket', 'payment_taken', 'date_payment', 'status',
                   'percentage_of_payment', 'stay', 'country', 'branch_name', 'price', 'get_paket_name', 'passport_date',
-                  'passport_expire', 'description']
+                  'passport_expire', 'description','residence']
 
 
 class MeetingSerializer(serializers.ModelSerializer):
