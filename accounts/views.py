@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from main.models import Client
 import datetime
 from django.db.models import Sum
+from operator import itemgetter
 
 
 class FAQListAPIView(generics.ListAPIView):
@@ -106,7 +107,8 @@ class TopOperatorListAPIView(APIView):
                 info=i.count_clients,
                 branch_name=i.branch.name
             ))
-        return Response(data)
+        sorted_data = sorted(data, key=lambda x: x['info']['count'], reverse=True)
+        return Response(sorted_data[:10], status=200)
 
 
 # class TopOperatorListAPIView(APIView):

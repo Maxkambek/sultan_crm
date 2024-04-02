@@ -80,9 +80,8 @@ class Account(AbstractBaseUser, PermissionsMixin):
         cost = 0
         qs = self.client_owner.all()
         for i in qs:
-            if i.date_added.month == datetime.datetime.now().month:
-                count += 1
-                cost += i.price
+            count += 1
+            cost += i.price
         return {'count': count, 'cost': cost}
 
 
